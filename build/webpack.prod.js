@@ -1,7 +1,7 @@
 const config = require('./webpack.base');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin('solution.css');
+const extractCSS = new ExtractTextPlugin('STable.css');
 
 config.plugins = config.plugins.concat([
     extractCSS,
