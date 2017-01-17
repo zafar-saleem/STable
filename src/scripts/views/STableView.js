@@ -2,7 +2,7 @@ let _model, _options, _res;
 
 let $table, $tr, $th, $td, $thead, $tbody;
 
-const SolutionView = {
+const STableView = {
     init: (model, options) => {
         _model = model;
         _options = options;
@@ -95,5 +95,5 @@ function triggerSortItems(event) {
     event.preventDefault();
 }
 
-module.exports = SolutionView;
+module.exports = STableView;
 

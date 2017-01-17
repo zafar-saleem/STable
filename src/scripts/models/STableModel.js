@@ -1,6 +1,6 @@
 let _res;
 
-const SolutionModel = {
+const STableModel = {
     get: (url, orderBy) => {
         return new Promise(function(resolve, reject) {
             let request = null;
@@ -17,7 +17,7 @@ const SolutionModel = {
                 if (request.status === 200) {
                     _res = JSON.parse(request.response);
 
-                    SolutionModel.sortItems(orderBy);
+                    STableModel.sortItems(orderBy);
 
                     resolve(_res);
                 } else {
@@ -63,5 +63,5 @@ const SolutionModel = {
     }
 };
 
-module.exports = SolutionModel;
+module.exports = STableModel;
 

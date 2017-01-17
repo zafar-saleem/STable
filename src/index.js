@@ -1,7 +1,7 @@
-import SolutionModel from './scripts/models/SolutionModel';
-import SolutionView from './scripts/views/SolutionView';
+import STableModel from './scripts/models/STableModel';
+import STableView from './scripts/views/STableView';
 
-SolutionView.init(SolutionModel, {
+STableView.init(STableModel, {
     el: document.querySelector('.wrapper'),
     url: 'src/datasets/example-one.json'
 });
