@@ -17,7 +17,7 @@ const STableModel = {
                 if (request.status === 200) {
                     _res = JSON.parse(request.response);
 
-                    STableModel.sortItems(orderBy);
+                    sortItems(orderBy);
 
                     resolve(_res);
                 } else {
@@ -31,37 +31,37 @@ const STableModel = {
 
             request.send();
         });
-    },
-
-    sortItems: (_orderBy) => {
-        _res.sort((a, b) => {
-            let tempA, tempB;
-
-            if (_orderBy === 'price' || _orderBy === 'phone') {
-                tempA = parseInt(a[_orderBy], 10);
-                tempB = parseInt(b[_orderBy], 10);
-
-                return tempB - tempA;
-            } else if (_orderBy === 'fda_date_approved') {
-                tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].split('/').reverse().join() : '';
-                tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].split('/').reverse().join() : '';
-            } else {
-                tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].toLowerCase() : '';
-                tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].toLowerCase() : '';
-            }
-
-            if (tempA > tempB) {
-                return -1;
-            }
-
-            if (tempA < tempB) {
-                return 1;
-            }
-
-            return 0;
-        });
     }
 };
+
+function sortItems(_orderBy) {
+    _res.sort((a, b) => {
+        let tempA, tempB;
+
+        if (_orderBy === 'price' || _orderBy === 'phone') {
+            tempA = parseInt(a[_orderBy], 10);
+            tempB = parseInt(b[_orderBy], 10);
+
+            return tempB - tempA;
+        } else if (_orderBy === 'fda_date_approved') {
+            tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].split('/').reverse().join() : '';
+            tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].split('/').reverse().join() : '';
+        } else {
+            tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].toLowerCase() : '';
+            tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].toLowerCase() : '';
+        }
+
+        if (tempA > tempB) {
+            return -1;
+        }
+
+        if (tempA < tempB) {
+            return 1;
+        }
+
+        return 0;
+    });
+}
 
 module.exports = STableModel;
 
