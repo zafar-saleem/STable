@@ -5,4 +5,3 @@ STableView.init(STableModel, {
     el: document.querySelector('.wrapper'),
     url: 'src/datasets/example-one.json'
 });
-
