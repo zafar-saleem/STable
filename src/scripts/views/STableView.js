@@ -1,6 +1,8 @@
+require('font-awesome-webpack');
+
 let _model, _options, _res;
 
-let $table, $tr, $th, $td, $thead, $tbody;
+let $table, $tr, $th, $td, $thead, $tbody, $icon;
 
 const STableView = {
     init: (model, options) => {
@@ -13,6 +15,7 @@ const STableView = {
         $td = document.createElement('td');
         $thead = document.createElement('thead');
         $tbody = document.createElement('tbody');
+        $icon = document.createElement('i');
 
         render();
     }
@@ -74,8 +77,15 @@ function addColumnHeaders(list, table) {
             if (list[i].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
                 columnSet.push(key);
                 let th = $th.cloneNode(false);
+                let icon = $icon.cloneNode(false);
+                let span = document.createElement('span');
 
-                th.appendChild(document.createTextNode(k));
+                span.appendChild(document.createTextNode(k));
+                th.appendChild(span);
+                icon.classList.add('fa');
+                icon.classList.add('fa-angle-up');
+                // icon.setAttribute('aria-hidden', true);
+                th.appendChild(icon);
                 tr.appendChild(th);
                 thead.appendChild(tr);
             }
