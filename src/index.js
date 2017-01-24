@@ -1,7 +1,7 @@
-import STableModel from './scripts/models/STableModel';
-import STableView from './scripts/views/STableView';
+import CTableModel from './scripts/models/CTableModel';
+import CTableView from './scripts/views/CTableView';
 
-STableView.init(STableModel, {
+CTableView.init(CTableModel, {
     el: document.querySelector('.wrapper'),
     url: 'src/datasets/example-one.json'
 });
