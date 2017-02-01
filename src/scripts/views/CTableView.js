@@ -2,6 +2,8 @@ require('font-awesome-webpack');
 
 let _model, _options, _res;
 
+let orderBy = 'company_name';
+
 let $table, $tr, $th, $td, $thead, $tbody, $icon;
 
 const CTableView = {
@@ -17,14 +19,16 @@ const CTableView = {
         $tbody = document.createElement('tbody');
         $icon = document.createElement('i');
 
-        render();
+        render(orderBy);
     }
 };
 
-function render(orderBy) {
+function render(order) {
+    orderBy = order;
+
     $table.classList.add('CeleraOne-table');
 
-    _model.get(_options.url, orderBy).then((response) => {
+    _model.get(_options.url, order).then((response) => {
         _res = response;
         let table = buildTable(_res);
 
@@ -80,10 +84,19 @@ function addColumnHeaders(list, table) {
                 let icon = $icon.cloneNode(false);
                 let span = document.createElement('span');
 
+                console.log(key);
+
                 span.appendChild(document.createTextNode(k));
                 th.appendChild(span);
                 icon.classList.add('fa');
-                icon.classList.add('fa-angle-up');
+
+                if (key === orderBy) {
+                    icon.classList.add('fa-angle-down');
+                } else {
+                    icon.classList.add('fa-angle-up');
+                }
+
+                // icon.classList.add('fa-angle-up');
                 // icon.setAttribute('aria-hidden', true);
                 th.appendChild(icon);
                 tr.appendChild(th);
