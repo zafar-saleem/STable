@@ -84,8 +84,6 @@ function addColumnHeaders(list, table) {
                 let icon = $icon.cloneNode(false);
                 let span = document.createElement('span');
 
-                console.log(key);
-
                 span.appendChild(document.createTextNode(k));
                 th.appendChild(span);
                 icon.classList.add('fa');
@@ -96,8 +94,6 @@ function addColumnHeaders(list, table) {
                     icon.classList.add('fa-angle-up');
                 }
 
-                // icon.classList.add('fa-angle-up');
-                // icon.setAttribute('aria-hidden', true);
                 th.appendChild(icon);
                 tr.appendChild(th);
                 thead.appendChild(tr);
