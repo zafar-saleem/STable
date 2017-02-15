@@ -1,7 +1,10 @@
 let _res;
 
-const CTableModel = {
-    get: (url, orderBy) => {
+class CTableModel {
+
+    get(url, orderBy) {
+        let self = this;
+
         return new Promise(function(resolve, reject) {
             let request = null;
 
@@ -17,7 +20,7 @@ const CTableModel = {
                 if (request.status === 200) {
                     _res = JSON.parse(request.response);
 
-                    sortItems(orderBy);
+                    self._sortItems(orderBy);
 
                     resolve(_res);
                 } else {
@@ -32,36 +35,36 @@ const CTableModel = {
             request.send();
         });
     }
-};
 
-function sortItems(_orderBy) {
-    _res.sort((a, b) => {
-        let tempA, tempB;
+    _sortItems(_orderBy) {
+        _res.sort((a, b) => {
+            let tempA, tempB;
 
-        if (_orderBy === 'price' || _orderBy === 'phone') {
-            tempA = parseInt(a[_orderBy], 10);
-            tempB = parseInt(b[_orderBy], 10);
+            if (_orderBy === 'price' || _orderBy === 'phone') {
+                tempA = parseInt(a[_orderBy], 10);
+                tempB = parseInt(b[_orderBy], 10);
 
-            return tempB - tempA;
-        } else if (_orderBy === 'fda_date_approved') {
-            tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].split('/').reverse().join() : '';
-            tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].split('/').reverse().join() : '';
-        } else {
-            tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].toLowerCase() : '';
-            tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].toLowerCase() : '';
-        }
+                return tempB - tempA;
+            } else if (_orderBy === 'fda_date_approved') {
+                tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].split('/').reverse().join() : '';
+                tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].split('/').reverse().join() : '';
+            } else {
+                tempA = (typeof a[_orderBy] !== 'undefined') ? a[_orderBy].toLowerCase() : '';
+                tempB = (typeof b[_orderBy] !== 'undefined') ? b[_orderBy].toLowerCase() : '';
+            }
 
-        if (tempA > tempB) {
-            return -1;
-        }
+            if (tempA > tempB) {
+                return -1;
+            }
 
-        if (tempA < tempB) {
-            return 1;
-        }
+            if (tempA < tempB) {
+                return 1;
+            }
 
-        return 0;
-    });
+            return 0;
+        });
+    }
+
 }
 
-module.exports = CTableModel;
-
+export default CTableModel;
