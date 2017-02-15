@@ -27,7 +27,7 @@ class CTableView {
         let self = this;
         orderBy = order;
 
-        $table.classList.add('CeleraOne-table');
+        $table.classList.add('c-table');
 
         _model.get(_options.url, order).then((response) => {
             _res = response;

@@ -3,14 +3,7 @@ import CTableView from './scripts/views/CTableView';
 
 let cTableModel = new CTableModel();
 let cTableView = new CTableView(cTableModel, {
-    el: document.querySelector('.wrapper'),
+    el: document.querySelector('.cTableWrapper'),
     url: 'src/datasets/example-one.json'
 });
-
-/*
-CTableView.init(cTableModel, {
-    el: document.querySelector('.wrapper'),
-    url: 'src/datasets/example-one.json'
-});
-*/
 
